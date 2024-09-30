@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/editUser.css">
+</head>
+<body>
+    <h1>Редактирование ученика</h1>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <form th:action="@{/editPeople}" th:method="POST" th:object="${people}">
+                    <div class="input-field">
+                        <input type="text" name="fio" placeholder="ФИО" th:value="${student.getFio()}" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="dateOfBirth" placeholder="Дата рождения" th:value="${student.getDateOfBirth()}" required>
+                    </div>
+                    <div class="input-field">
+                        <input name="parentFio" class="parentFio" placeholder="ФИО родителя" th:value="${student.getParentFio()}" required>
+                    </div>
+                    <div class="input-field">
+                        <select name="ticket">
+                            <option value="0">Абонемент</option>
+                            <option value="1" th:selected="${student.getTicket() == '1'}">Разовое занятие</option>
+                            <option value="4" th:selected="${student.getTicket() == '4'}">4 занятия</option>
+                            <option value="8" th:selected="${student.getTicket() == '8'}">8 занятий</option>
+                            <option value="12" th:selected="${student.getTicket() == '12'}">12 занятий</option>
+                            <option value="96" th:selected="${student.getTicket() == '96'}">96 занятий</option>
+                            <option value="144" th:selected="${student.getTicket() == '144'}">144 занятия</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="summ" placeholder="Стоимость" th:value="${student.getSumm()}" required>
+                    </div>
+                    <div class="input-field">
+                        <select name="paymentMethod">
+                            <option value="nal" th:selected="${student.getPaymentMethod() == 'nal'}">Наличные</option>
+                            <option value="card" th:selected="${student.getPaymentMethod() == 'card'}">Банковская карта</option>
+                            <option value="qr" th:selected="${student.getPaymentMethod() == 'qr'}">QR код</option>
+                        </select>
+                        <input type="hidden" name="id" th:value="${id}">
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="Редактировать">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

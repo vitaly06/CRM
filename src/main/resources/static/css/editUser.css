@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: #E69F4F;
+}
+h1{
+    text-align: center;
+    margin-top: 50px;
+}
+.container{
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+.login{
+    display: flex;
+}
+input, select{
+    margin-bottom: 10px;
+    font-size: 36px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+select{
+    width: 100%;
+}
+button{
+    text-align: center;
+    padding: 10px;
+}

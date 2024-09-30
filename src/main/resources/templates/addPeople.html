@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/addPeople.css">
+</head>
+<body>
+    <h1>Добавление ученика</h1>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <form th:action="@{/addPeople}" th:method="POST" th:object="${people}">
+                    <div class="input-field">
+                        <input type="text" name="fio" placeholder="ФИО" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="dateOfBirth" placeholder="Дата рождения" required>
+                    </div>
+                    <div class="input-field">
+                        <input name="parentFio" class="parentFio" placeholder="ФИО родителя" required>
+                    </div>
+                    <div class="input-field">
+                        <select name="ticket">
+                            <option value="0">Абонемент</option>
+                            <option value="1">Разовое занятие</option>
+                            <option value="4">4 занятия</option>
+                            <option value="8">8 занятий</option>
+                            <option value="12">12 занятий</option>
+                            <option value="96">96 занятий</option>
+                            <option value="144">144 занятия</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="summ" placeholder="Стоимость" required>
+                    </div>
+                    <div class="input-field">
+                        <select name="paymentMethod">
+                            <option value="nal">Наличные</option>
+                            <option value="card">Банковская карта</option>
+                            <option value="qr">QR код</option>  
+                        </select>
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="Добавить">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

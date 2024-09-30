@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/allPeople.css">
+</head>
+<body>
+    <div class="parent"><div class="button"><a th:href="@{/addPeople}">Добавить ученика</a></div></div>
+    <table>
+        <tr>
+            <th>ФИО</th>
+            <th>Дата рождения</th>
+            <th>ФИО родителя</th>
+            <th>Абонемент</th>
+            <th>Стоимость</th>
+            <th>Способ оплаты</th>
+        </tr>
+        <tr th:each="people : ${peoples}">
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getFio()}">time</span>
+            </a></td>
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getDateOfBirth()}">time</span>
+            </a></td>
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getParentFio()}">time</span>
+            </a></td>
+            <td th:switch="${people.getTicket()}">
+                <a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:case="1">Разовое занятие</span>
+                <span th:case="4">4 занятия</span>
+                <span th:case="8">8 занятий</span>
+                <span th:case="12">12 занятий</span>
+                <span th:case="96">96 занятий</span>
+                <span th:case="144">144 занятия</span>
+                </a>
+            </td>
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getSumm()}">time</span>
+            </a></td>
+            <td th:switch="${people.getPaymentMethod()}">
+                <a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:case="nal">Наличные</span>
+                <span th:case="card">Банковская карта</span>
+                <span th:case="qr">QR код</span>
+                </a></td>
+        </tr>
+    </table>
+</body>
+</html>
