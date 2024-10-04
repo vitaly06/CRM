@@ -97,6 +97,11 @@ public class MainController {
         for(Long id : kidId){
             lessonsReport.setKidId(Math.toIntExact(id));
             lessonsReportDAO.addLessonsReport(lessonsReport);
+            // убавляем кол-во занятий и вычитаем сумму из занятий, сохраняем в БД
+            People people = peopleDAO.getPeopleById(Math.toIntExact(id));
+            people.setFactTicket(people.getFactTicket() - 1);
+            people.setFactMoney(people.getFactMoney() - (people.getSumm() / Integer.parseInt(people.getTicket())));
+            peopleDAO.editCountLessons(people);
         }
         return "redirect:/main";
     }

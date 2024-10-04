@@ -44,4 +44,10 @@ public class PeopleDAO {
                 people.getFio(), people.getDateOfBirth(), people.getParentFio(), people.getTicket(), people.getSumm(),
                 people.getPaymentMethod(), Integer.parseInt(people.getTicket()), people.getSumm(), people.getId());
     }
+
+    public int editCountLessons(People people){
+        assert jdbcTemplate != null;
+        return jdbcTemplate.update("UPDATE users SET factTicket = ?, factMoney = ? WHERE id = ?",
+                people.getFactTicket(), people.getFactMoney(), people.getId());
+    }
 }
