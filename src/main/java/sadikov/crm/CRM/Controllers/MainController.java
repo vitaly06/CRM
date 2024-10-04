@@ -3,13 +3,12 @@ package sadikov.crm.CRM.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import sadikov.crm.CRM.DAO.AdminDAO;
+import sadikov.crm.CRM.DAO.LessonsReportDAO;
 import sadikov.crm.CRM.DAO.PeopleDAO;
 import sadikov.crm.CRM.Models.Admin;
+import sadikov.crm.CRM.Models.LessonsReport;
 import sadikov.crm.CRM.Models.People;
 
 import java.util.List;
@@ -20,7 +19,10 @@ public class MainController {
     AdminDAO adminDAO;
     @Autowired
     PeopleDAO peopleDAO;
+    @Autowired
+    LessonsReportDAO lessonsReportDAO;
     public boolean isAuth = false;
+
 
     // Логин
     @GetMapping("/")
@@ -79,5 +81,23 @@ public class MainController {
     public String editPeoplePost(@ModelAttribute("people") People people) {
         peopleDAO.editPeople(people);
         return "redirect:/allPeople";
+    }
+
+    // Отчёт о занятии
+    @GetMapping("/lessonsReport")
+    public String lessonReport(Model model) {
+        model.addAttribute("kids", peopleDAO.getAllPeople()); // передаём всех детей
+        return "createLesson";
+    }
+
+    @PostMapping("/lessonsReport")
+        public String lessonReportPost(@ModelAttribute("lessonsReport") LessonsReport lessonsReport,
+                                       @RequestParam(value = "kidId", required = false) List<Long> kidId) {
+        // проход по всем выбранным ученикам и добавление в БД
+        for(Long id : kidId){
+            lessonsReport.setKidId(Math.toIntExact(id));
+            lessonsReportDAO.addLessonsReport(lessonsReport);
+        }
+        return "redirect:/main";
     }
 }

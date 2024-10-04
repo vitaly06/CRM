@@ -26,9 +26,11 @@ public class PeopleDAO {
     }
 
     public void addPeople(People people){
-        jdbcTemplate.update("INSERT INTO users(fio, dateOfBirth, parentFio, ticket, summ, paymentMethod)" +
-                " VALUES(?, ?, ?, ?, ?, ?)", people.getFio(), people.getDateOfBirth(), people.getParentFio(),
-                people.getTicket(), people.getSumm(), people.getPaymentMethod());
+        people.setFactTicket(Integer.parseInt(people.getTicket()));
+        people.setFactMoney(people.getSumm());
+        jdbcTemplate.update("INSERT INTO users(fio, dateOfBirth, parentFio, ticket, summ, paymentMethod, factTicket, factMoney)" +
+                " VALUES(?, ?, ?, ?, ?, ?,)", people.getFio(), people.getDateOfBirth(), people.getParentFio(),
+                people.getTicket(), people.getSumm(), people.getPaymentMethod(), people.getFactTicket(), people.getFactMoney());
     }
 
     public People getPeopleById(int id){
@@ -37,8 +39,9 @@ public class PeopleDAO {
 
     public int editPeople(People people){
         assert jdbcTemplate != null;
-        return jdbcTemplate.update("UPDATE users SET fio =?, dateOfBirth =?, parentFio =?, ticket =?, summ =?, paymentMethod =? WHERE id = ?",
+        return jdbcTemplate.update("UPDATE users SET fio =?, dateOfBirth =?, parentFio =?, ticket =?, summ =?, " +
+                        "paymentMethod =?, factTicket = ?, factMoney = ? WHERE id = ?",
                 people.getFio(), people.getDateOfBirth(), people.getParentFio(), people.getTicket(), people.getSumm(),
-                people.getPaymentMethod(), people.getId());
+                people.getPaymentMethod(), Integer.parseInt(people.getTicket()), people.getSumm(), people.getId());
     }
 }

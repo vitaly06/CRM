@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/createLesson.css">
+</head>
+<body>
+    <h1 class="main_h">Учёт занятий</h1>
+    <div class="div_form">
+        <form th:action="@{/lessonsReport}" th:method="POST" th:object="${lessonsReport}">
+            <div class="first_input">
+                <div class="input">
+                    <select name="lessonType" id="">
+                        <option value="0" selected>Услуга</option>
+                        <option value="personal">Индивидуальное занятие</option>
+                        <option value="general">Общая тренировка</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="date">Дата:</label>
+                    <input type="date" name="date" id="date">
+                </div>
+                <div class="input">
+                    <label for="time">Время:</label>
+                    <input type="time" name="time" id="time">
+                </div>
+            </div>    
+            <div class="kids_block">
+                <h1>Присутствующие дети:</h1>
+                <div class="checkboxes">
+                    <div class="checkbox" th:each="kid : ${kids}">
+                        <input type="checkbox" th:name="kidId" id="kidId" th:value="${kid.getId()}">
+                        <label for="kidId" th:text="${kid.getFio()}">familia</label>
+                    </div>
+                </div>
+                <button type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -19,6 +19,8 @@ public class PeopleMapper implements RowMapper<People> {
             people.setTicket(resultSet.getString("ticket"));
             people.setSumm(resultSet.getInt("summ"));
             people.setPaymentMethod(resultSet.getString("paymentMethod"));
+            people.setFactTicket(resultSet.getInt("factTicket"));
+            people.setFactMoney(resultSet.getInt("factMoney"));
         }
         catch (Exception e){
             return new People();

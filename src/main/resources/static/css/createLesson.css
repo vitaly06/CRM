@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: #E69F4F;
+}
+.main_h{
+    text-align: center;
+    margin: 50px 0 0 0;
+}
+form{
+    max-height: 80%;
+    padding: 15px 10%;
+    background-color: rgb(255, 255, 255);
+    border: black 1px solid;
+    display: flex;
+    justify-content: space-between;
+    margin: 50px auto 0 auto;
+    max-width: 90%;
+}
+/* Левая сторона */
+.first_input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.input input, .input select{
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+.input label{
+    font-size: 18px;
+}
+/* Правая сторона */ 
+.kids_block{
+    padding: 15px;
+    
+}
+.checkboxes{
+    font-size: 18px;
+    margin: 20px auto;
+    max-height: 70%;
+    overflow-y: auto;
+}
+button{
+    margin: 10px auto;
+    color: black;
+    background-color: wheat;
+    border: #E69F4F 2px solid;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    align-content: center;
+}

@@ -8,6 +8,8 @@ public class People {
     private String ticket;
     private int summ;
     private String paymentMethod;
+    private int factTicket;
+    private int factMoney;
 
     public int getId() {
         return id;
@@ -63,5 +65,21 @@ public class People {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public int getFactTicket() {
+        return factTicket;
+    }
+
+    public void setFactTicket(int factTicket) {
+        this.factTicket = factTicket;
+    }
+
+    public int getFactMoney() {
+        return factMoney;
+    }
+
+    public void setFactMoney(int factMoney) {
+        this.factMoney = factMoney;
     }
 }

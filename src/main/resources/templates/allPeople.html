@@ -16,6 +16,8 @@
             <th>Абонемент</th>
             <th>Стоимость</th>
             <th>Способ оплаты</th>
+            <th>Остаток занятий</th>
+            <th>Остаток денег</th>
         </tr>
         <tr th:each="people : ${peoples}">
             <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
@@ -46,6 +48,12 @@
                 <span th:case="card">Банковская карта</span>
                 <span th:case="qr">QR код</span>
                 </a></td>
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getFactTicket()}">time</span>
+            </a></td>
+            <td><a th:href="@{/editUser/{id}(id=${people.getId()})}">
+                <span th:text="${people.getFactMoney()}">time</span>
+            </a></td>
         </tr>
     </table>
 </body>
